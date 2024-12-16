@@ -9,7 +9,35 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="app"></div>
+  <script>
+    const MovieCard = ({ title, year, image }) => {
+      return React.createElement(
+        'div',
+        { className: 'movie-card' },
+        React.createElement('img', { src: image, alt: `${title} poster`, className: 'movie-card__image' }),
+        React.createElement('h3', { className: 'movie-card__title' }, title),
+        React.createElement('p', { className: 'movie-card__year' }, year)
+      );
+    };
+    const App = () => {
+      const movies = [
+        { title: 'Человек-паук: Нет пути домой', year: '2021', image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/731c4031-7389-44f4-8c15-f9f4e3b0ed90/300x450' },
+        { title: 'Аватар 2', year: '2022', image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/2e51cb8b-fd51-4166-84a2-63559733baac/300x450' },
+        { title: 'Форсаж: Хоббс и Шоу', year: '2019', image: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/33e21e7f-229d-4630-9460-80dbd1eed74a/300x450' }
+      ];
 
+      return React.createElement(
+        'div',
+        { id: 'app-container' },
+        movies.map((movie, index) =>
+          React.createElement(MovieCard, { key: index, ...movie })
+        )
+      );
+    };
+
+    
+    ReactDOM.createRoot(document.getElementById('app')).render(React.createElement(App));
+  </script>
 </body>
 </html>
